@@ -3,6 +3,8 @@ package com.java.pharm.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.java.pharm.model.User;
@@ -26,7 +28,7 @@ public class UserService {
     public User getUserById(int id)
     {
         return ur.findById(id).orElse(null);
-    }
+    } 
 
     public boolean updateDetails(int id,User u)
         {
@@ -55,5 +57,10 @@ public class UserService {
             ur.deleteById(id);
             return true;
         }
+
+        public Page<User> findByUsername(String username, Pageable pageable) {
+            return ur.findByUsername(username, pageable);
+        }
     }
+
 
